@@ -1,5 +1,7 @@
-use std::{alloc::System, time::SystemTime};
+use serde::{Deserialize, Serialize};
+use std::time::SystemTime;
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AudioFrame {
     format: AudioFormat,
     channels: u16,
@@ -81,7 +83,7 @@ impl AudioFrame {
 }
 
 #[non_exhaustive]
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub enum AudioFormat {
     I8,
     I16,
