@@ -4,9 +4,9 @@ mod video;
 pub use audio::*;
 pub use video::*;
 
-use serde::{Deserialize, Serialize};
+use bincode::{Decode, Encode};
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub enum Frame {
     Audio(AudioFrame),
     Video(VideoFrame),

@@ -1,7 +1,7 @@
-use serde::{Deserialize, Serialize};
+use bincode::{Decode, Encode};
 use std::time::SystemTime;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub struct YUVFrame {
     pub display_time: SystemTime,
     pub width: i32,
@@ -12,7 +12,7 @@ pub struct YUVFrame {
     pub chrominance_stride: i32,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub struct RGBFrame {
     pub display_time: SystemTime,
     pub width: i32,
@@ -20,14 +20,14 @@ pub struct RGBFrame {
     pub data: Vec<u8>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub struct RGB8Frame {
     pub display_time: SystemTime,
     pub width: i32,
     pub height: i32,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub struct RGBxFrame {
     pub display_time: SystemTime,
     pub width: i32,
@@ -35,7 +35,7 @@ pub struct RGBxFrame {
     pub data: Vec<u8>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub struct XBGRFrame {
     pub display_time: SystemTime,
     pub width: i32,
@@ -43,7 +43,7 @@ pub struct XBGRFrame {
     pub data: Vec<u8>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub struct BGRxFrame {
     pub display_time: SystemTime,
     pub width: i32,
@@ -51,7 +51,7 @@ pub struct BGRxFrame {
     pub data: Vec<u8>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub struct BGRFrame {
     pub display_time: SystemTime,
     pub width: i32,
@@ -59,7 +59,7 @@ pub struct BGRFrame {
     pub data: Vec<u8>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub struct BGRAFrame {
     pub display_time: SystemTime,
     pub width: i32,
@@ -67,7 +67,7 @@ pub struct BGRAFrame {
     pub data: Vec<u8>,
 }
 
-#[derive(Debug, Clone, Copy, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, Default, Encode, Decode)]
 pub enum FrameType {
     #[default]
     YUVFrame,
@@ -76,7 +76,7 @@ pub enum FrameType {
     BGRAFrame,
 }
 
-#[derive(Deserialize, Serialize, Debug, Clone)]
+#[derive(Debug, Clone, Encode, Decode)]
 pub enum VideoFrame {
     YUVFrame(YUVFrame),
     RGB(RGBFrame),
